@@ -1,11 +1,16 @@
 {
   "name": "letswork",
-  "version": "1.0.0",
+  "version": "0.0.3",
   "description": "A tool to disable all your distractions",
   "bin": {
-    "letswork": "/bin/letswork.js",
+    "letswork": "bin/letswork.js",
     "letsfun": "bin/letsfun.js"
   },
+  "files": [
+    "bin/*",
+    "lib/*",
+    "blockables/*"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -18,5 +23,7 @@
     "lodash": "^2.4.1",
     "minimist": "^1.1.0",
     "requireindex": "^1.1.0"
-  }
+  },
+  "engineStrict": true,
+  "preferGlobal": true
 }
