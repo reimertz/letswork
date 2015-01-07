@@ -19,31 +19,27 @@ var _ = require('lodash'),
 argumentHandler.check(args);
 
 
-var whitelist = [],
-    addressesToBlock = [];
+var whitelist = {},
+    blacklist = blockables;
 
+//check whitelisted blockables
 args._.forEach(function(item){
-  if (blockables[item]) {
-    delete blockables[item];
-    whitelist.push(item);
+  if (blacklist[item]) {    
+    whitelist[item] = blacklist[item];
+    delete blacklist[item];
   }
 });
 
-_.forIn(blockables, function(blockable, key) {
-  addressesToBlock = addressesToBlock.concat(blockable.addresses);
-  
-});
-
-hostsEditor.block(addressesToBlock)
-.then(function(result){
-  if (whitelist.length > 0) {
-    console.log(chalk.red('blocked everything except ' + chalk.green(whitelist.join(', ')))); 
-  } 
-  else {
-    console.log(chalk.red('Now, let\'s work!'));  
-  }
-  
-})
-.error(function(err){
-  console.log('something went wrong...');
-})
+hostsEditor.block(blacklist)
+  .then(hostsEditor.unblock(whitelist))
+  .then(function(result){
+    if (Object.keys(whitelist).length > 0) {
+      console.log(chalk.red('blocked everything except ' + chalk.green(Object.keys(whitelist).join(', ')))); 
+    } 
+    else {
+      console.log(chalk.red('Now, let\'s work!'));  
+    }  
+  })
+  .error(function(err){
+    console.log('something went wrong...');
+  });

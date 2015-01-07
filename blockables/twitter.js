@@ -1,7 +1,4 @@
-module.exports = { 
-  name : 'twitter',
-  addresses: [
-    'www.twitter.com',
-    'twitter.com',
-  ]
-}
+module.exports =  [
+  'www.twitter.com',
+  'twitter.com'
+];

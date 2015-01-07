@@ -3,40 +3,43 @@
 
 var _ = require('lodash'),
     chalk = require("chalk"),
-    
+
+    Promise = require('bluebird'),
+    hostile = require("hostile"),
+    //addToHostFile = Promise.promisify(hostile.set),
+
     blockables = require('../blockables'),
     args = require('minimist')(process.argv.slice(2)),
     
     hostsEditor = require('../lib/hostseditor'),
     argumentHandler = require('../lib/argumenthandler');
 
+
+//Check for --help --list
 argumentHandler.check(args);
 
-var blacklist = [],
-    addressesToUnBlock = [];
 
+var whitelist = blockables,
+    blacklist = {};
+
+//check whitelisted blockables
 args._.forEach(function(item){
-  if (blockables[item]) {
-    delete blockables[item];
-    blacklist.push(item);
+  if (whitelist[item]) {    
+    blacklist[item] = whitelist[item];
+    delete whitelist[item];
   }
 });
 
-_.forIn(blockables, function(blockable, key) {
-  addressesToUnBlock = addressesToUnBlock.concat(blockable.addresses);
-  
-});
-
-hostsEditor.unblock(addressesToUnBlock)
-.then(function(result){
-  if (blacklist.length > 0) {
-    console.log(chalk.green('unblocked everything except ') + chalk.red(blacklist.join(', '))); 
-  } 
-  else {
-    console.log(chalk.green('You are free again!'));	
-  }
-  
-})
-.error(function(err){
-  console.log('something went wrong...');
-})
+hostsEditor.unblock(whitelist)
+  .then(hostsEditor.block(blacklist))
+  .then(function(result){
+    if (Object.keys(blacklist).length > 0) {
+      console.log(chalk.green('unblocked everything except ' + chalk.red(Object.keys(blacklist).join(', ')))); 
+    } 
+    else {
+      console.log(chalk.red('Free at last!'));  
+    }  
+  })
+  .error(function(err){
+    console.log('something went wrong...');
+  });

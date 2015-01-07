@@ -1,7 +1,5 @@
-module.exports = { 
-  name : 'reddit',
-  addresses: [
-    'www.reddit.com',
-    'reddit.com'
-  ]
-}
+module.exports =  [
+  'www.reddit.com',
+  'reddit.com'
+];
+  
