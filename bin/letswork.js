@@ -23,7 +23,7 @@ var whitelist = [],
     addressesToBlock = [];
 
 args._.forEach(function(item){
-  if(blockables[item]) {
+  if (blockables[item]) {
     delete blockables[item];
     whitelist.push(item);
   }
@@ -36,9 +36,10 @@ _.forIn(blockables, function(blockable, key) {
 
 hostsEditor.block(addressesToBlock)
 .then(function(result){
-  if(whitelist.length > 0) {
+  if (whitelist.length > 0) {
     console.log(chalk.red('blocked everything except ' + chalk.green(whitelist.join(', ')))); 
-  } else {
+  } 
+  else {
     console.log(chalk.red('Now, let\'s work!'));  
   }
   

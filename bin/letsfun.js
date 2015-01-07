@@ -13,10 +13,10 @@ var _ = require('lodash'),
 argumentHandler.check(args);
 
 var blacklist = [],
-		addressesToUnBlock = [];
+    addressesToUnBlock = [];
 
 args._.forEach(function(item){
-  if(blockables[item]) {
+  if (blockables[item]) {
     delete blockables[item];
     blacklist.push(item);
   }
@@ -29,11 +29,12 @@ _.forIn(blockables, function(blockable, key) {
 
 hostsEditor.unblock(addressesToUnBlock)
 .then(function(result){
-	if(blacklist.length > 0) {
-		console.log(chalk.green('unblocked everything except ') + chalk.red(blacklist.join(', '))); 
-	} else {
-		console.log(chalk.green('You are free again!'));	
-	}
+  if (blacklist.length > 0) {
+    console.log(chalk.green('unblocked everything except ') + chalk.red(blacklist.join(', '))); 
+  } 
+  else {
+    console.log(chalk.green('You are free again!'));	
+  }
   
 })
 .error(function(err){
