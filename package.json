@@ -1,6 +1,6 @@
 {
   "name": "letswork",
-  "version": "1.0.6",
+  "version": "0.0.1",
   "description": "A tool to disable all your distractions",
   "bin": {
     "letswork": "bin/letswork.js",
