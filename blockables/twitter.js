@@ -1,3 +1,4 @@
 module.exports =  [
-  'twitter.com'
+  'twitter.com',
+  'www.twitter.com'
 ];
