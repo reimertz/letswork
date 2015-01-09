@@ -8,6 +8,10 @@ all your time (facebook, 9gag, reddit, twitter..).
 It's all done by adding/removing some magic lines to your
 hosts file.
 
+**Caution:** I strongly suggest that you backup your hosts file
+```bash
+sudo cp -npRv "/etc/hosts" "/etc/hosts_letswork_backup_$(date +"%m_%d_%Y")"
+```
 
 ##Installation
 ```javascript
