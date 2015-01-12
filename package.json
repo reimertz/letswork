@@ -1,7 +1,12 @@
 {
   "name": "letswork",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A tool to disable all your distractions",
+   "repository": {
+    "type": "git",
+    "url": "git@github.com:reimertz/letswork.git"
+  },
+  "author": "Pierre Reimertz",
   "bin": {
     "letswork": "bin/letswork.js",
     "letsfun": "bin/letsfun.js"
@@ -14,7 +19,6 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Pierre Reimertz",
   "license": "ISC",
   "dependencies": {
     "bluebird": "^2.6.0",
