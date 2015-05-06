@@ -14,9 +14,10 @@ sudo cp -npRv "/etc/hosts" "/etc/hosts_letswork_backup_$(date +"%m_%d_%Y")"
 ```
 
 ##Installation
-```javascript
-npm install -g letswork
+```bash
+sudo npm install -g letswork 
 ```
+*need root privileges since it's editing /etc/hosts
 
 ##Usage
 ```bash
